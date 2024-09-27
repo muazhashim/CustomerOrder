@@ -28,6 +28,7 @@ class ProductController extends Controller
     ]);
 
     return redirect()->route('home')->with('success', 'Product created successfully');
+    
 }
 
     public function edit(Request $request, Product $product)
