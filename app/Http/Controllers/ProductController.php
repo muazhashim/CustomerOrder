@@ -24,6 +24,7 @@ class ProductController extends Controller
         'price' => $request->price,
         'created_at' => now(), // Automatically use current timestamp
         'updated_at' => now(),
+        
     ]);
 
     return redirect()->route('home')->with('success', 'Product created successfully');
