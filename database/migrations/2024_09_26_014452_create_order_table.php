@@ -17,6 +17,7 @@ return new class extends Migration
             $table->date('order_date');
             $table->integer('order_total');
             $table->string('payment_type');
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }

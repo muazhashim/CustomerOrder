@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Order;
-
+use Storage;
+use File;
 
 class OrderController extends Controller
 {
@@ -12,11 +13,18 @@ class OrderController extends Controller
     {
         //validation tanpa menggunakan php artisan make:request
         // Validate the form data
-        $validated = $request->validate([
-            'order_date' => 'required|date',  // Ensure order_date is present and valid
-            'order_total' => 'required|numeric',
-            'payment_type' => 'required|string',
-        ]);
+        // $validated = $request->validate([
+        //     'order_date' => 'required|date',  // Ensure order_date is present and valid
+        //     'order_total' => 'required|numeric',
+        //     'payment_type' => 'required|string',
+        // ]);
+
+        if ($request->hasFile('image')) {
+            //rename file
+            $fileName = $request->name.'-'.date('Y-m-d').'.'.$request->image->getClientOriginalExtension();
+            //simpan gambar file
+            Storage::disk('public')->put('/order/'.$fileName, File::get($request->image));
+        }
     
         // Create the order
         Order::create([
@@ -24,6 +32,7 @@ class OrderController extends Controller
             'order_date' => $request->order_date,  // Ensure this is not null
             'order_total' => $request->order_total,
             'payment_type' => $request->payment_type,
+            'image'=>$fileName ?? 'No image'
         ]);
     
         // Redirect with success message

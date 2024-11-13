@@ -65,6 +65,17 @@
 
                 </div>
                 <div class="card-body">
+
+                <form action="{{route('product.search')}}" method="GET">
+                            <div class="input-group-append mt-2 p-1">
+                                <input type="text" class="form-control" name="keyword" placeholder="Search by Inventory Name">
+                                <div class="input-group-append mt-2">
+                                    <button class="btn btn-primary" type="submit">Search</button>
+                                    <a href="{{route('home')}}" button class="btn btn-primary" type="submit">Refresh</button></a>
+                                </div>
+                            </div>
+                        </form>
+
                     @if (session('status'))
                     <div class="alert alert-success" role="alert">
                         {{ session('status') }}
@@ -100,6 +111,7 @@
                             </tr>
                         </tbody>
                         @endforeach
+
                     </table>
                     <!-- Button trigger modal -->
                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -117,10 +129,12 @@
                                         aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-
-                                    <form method="POST" action="{{ route('order.store') }}">
+                                    <form method="POST" action="{{ route('order.store') }}" enctype="multipart/form-data">
                                         @csrf
                                         <div class="mb-3">
+
+                                            <label class="col-form-label">Default file input example</label>
+                                            <input class="form-control" type="file" name="image">
 
                                             <label for="name" class="col-md-4 col-form-label">order total</label>
                                             <input type="number" class="form-control" name="order total"
@@ -187,6 +201,7 @@
                             <th scope="col">order date</th>
                             <th scope="col">order total</th>
                             <th scope="col">payment type</th>
+                            <th scope="col">image</th>
                         </tr>
                     </thead>
                     @foreach ($orders as $key => $order)
@@ -196,6 +211,9 @@
                             <td>{{$order->order_date}}</td>
                             <td>{{$order->order_total}}</td>
                             <td>{{$order->payment_type}}</td>
+                            <td>
+                                <img src="{{ asset('storage/order/'.$order->image) }}" alt="order 1">
+                            </td>
                             <td> <a href="{{route('order.edit', $order)}}" type="button"
                                     class="btn btn-primary">edit</a>
                                 <form action="{{route('order.destroy', $order)}}" method="POST">

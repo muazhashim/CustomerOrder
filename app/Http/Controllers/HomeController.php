@@ -25,10 +25,8 @@ class HomeController extends Controller
     public function index()
     {
         $orders = Order::all();
-        $products = Product::all();
+        $products = Product::paginate(7);
         return view('home', compact('orders','products'));
 
     }
-    
-
 }

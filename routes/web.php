@@ -34,3 +34,4 @@ Route::post('/product',[ProductController::class,'store'])->name('product.store'
 Route::get('/product/edit/{product}',[ProductController::class,'edit'])->name('product.edit');
 Route::put('/product/{product}',[ProductController::class,'update'])->name('product.update');
 Route::delete('/product/{product}',[ProductController::class,'destroy'])->name('product.destroy');
+Route::get('/product/search', [App\Http\Controllers\ProductController::class, 'search'])->name('product.search');
