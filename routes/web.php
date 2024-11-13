@@ -37,3 +37,10 @@ Route::delete('/product/{product}',[ProductController::class,'destroy'])->name('
 Route::get('/product/search', [App\Http\Controllers\ProductController::class, 'search'])->name('product.search');
 
 Route::get('/product/{product}',[ProductController::class,'show'])->name('product.show')
+->middleware('auth');
+Route::get('/product/{product}/order',[ProductController::class,'order'])->name('product.order');
+
+Route::get('/product/{product}/order/create',[ProductController::class,'orderCreate'])
+->name('product.order.create');
+Route::post('/product/{product}/order',[ProductController::class,'orderStore'])
+->name('product.order.store');
