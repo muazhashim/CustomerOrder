@@ -55,4 +55,17 @@ class ProductController extends Controller
         return redirect()->route('home')->with('success', 'Product deleted successfully');
     }
 
+    public function search(Request $request)
+    {
+        $orders = Order::all();
+        if($request->keyword){
+            $products = Product::query()
+                        ->where('product_name','LIKE','%'.$request->keyword.'%')->get();
+        }
+        return view('home',compact('products','orders'));
+
+
+        
+    }
+
 }
