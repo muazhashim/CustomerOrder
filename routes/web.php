@@ -40,3 +40,7 @@ Route::get('/product/{product}',[ProductController::class,'show'])->name('produc
 ->middleware('auth');
 Route::get('/product/{product}/order',[ProductController::class,'order'])->name('product.order');
 
+Route::get('/product/{product}/order/create',[ProductController::class,'orderCreate'])
+->name('product.order.create');
+Route::post('/product/{product}/order',[ProductController::class,'orderStore'])
+->name('product.order.store');
