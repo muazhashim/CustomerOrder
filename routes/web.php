@@ -51,3 +51,6 @@ Edit'])->name('product.order.edit');
 Route::put('/product/{product}/order/{order}',[ProductController::class,'orderUpdate
 
 '])->name('product.order.update');
+
+Route::delete('/product/{product}/order/{order}',[ProductController::class,'orderDestroy
+'])->name('product.order.destroy');
