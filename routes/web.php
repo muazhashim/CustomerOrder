@@ -47,3 +47,7 @@ Route::post('/product/{product}/order',[ProductController::class,'orderStore'])
 
 Route::get('/product/{product}/order/edit/{order}',[ProductController::class,'order
 Edit'])->name('product.order.edit');
+
+Route::put('/product/{product}/order/{order}',[ProductController::class,'orderUpdate
+
+'])->name('product.order.update');
