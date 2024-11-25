@@ -44,3 +44,10 @@ Route::get('/product/{product}/order/create',[ProductController::class,'orderCre
 ->name('product.order.create');
 Route::post('/product/{product}/order',[ProductController::class,'orderStore'])
 ->name('product.order.store');
+
+Route::get('/product/{product}/order/edit/{order}',[ProductController::class,'order
+Edit'])->name('product.order.edit');
+
+Route::put('/product/{product}/order/{order}',[ProductController::class,'orderUpdate
+
+'])->name('product.order.update');
