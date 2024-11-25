@@ -14,6 +14,7 @@ class Order extends Model
         'order_date',
         'order_total',
         'payment_type',
+        'image',
     ];
 
     public function  user()
