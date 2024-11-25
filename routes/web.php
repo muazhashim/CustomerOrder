@@ -40,3 +40,4 @@ Route::get('/product/{product}',[ProductController::class,'show'])->name('produc
 ->middleware('auth');
 Route::get('/product/{product}/order',[ProductController::class,'order'])->name('product.order');
 
+route::resource('product', [ProductController::class]);
